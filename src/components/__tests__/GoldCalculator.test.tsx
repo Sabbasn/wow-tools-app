@@ -3,9 +3,18 @@ import { render, screen, cleanup } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import userEvent from "@testing-library/user-event";
 
+let goldInput: HTMLInputElement;
+let silverInput: HTMLInputElement;
+let copperInput: HTMLInputElement;
+let multiplierInput: HTMLInputElement;
+
 describe("Calculations", () => {
   beforeEach(() => {
     render(<GoldCalculator />);
+    goldInput = screen.getByTestId("gold-input");
+    silverInput = screen.getByTestId("silver-input");
+    copperInput = screen.getByTestId("copper-input");
+    multiplierInput = screen.getByTestId("multiplier-input");
   });
 
   afterEach(() => {
@@ -17,16 +26,11 @@ describe("Calculations", () => {
     expect(goldOutput).toBeInTheDocument();
   });
 
-  it("displays error message when input is not valid", () => {
-    const goldInput: HTMLInputElement = screen.getByTestId("gold-input");
-    var valueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      "value"
-    )?.set;
-    valueSetter?.call(goldInput, "-1");
+  it("displays error message when input is not valid", async () => {
+    const user = userEvent.setup();
 
-    var ev2 = new Event("input", { bubbles: true });
-    goldInput.dispatchEvent(ev2);
+    await user.clear(goldInput);
+    await user.type(goldInput, "-1");
 
     const errorMessage = screen.getByTestId("not-valid-text");
     expect(errorMessage).toBeInTheDocument();
@@ -34,11 +38,6 @@ describe("Calculations", () => {
 
   it("calculates the right amount of gold", async () => {
     const user = userEvent.setup();
-    const goldInput: HTMLInputElement = screen.getByTestId("gold-input");
-    const silverInput: HTMLInputElement = screen.getByTestId("silver-input");
-    const copperInput: HTMLInputElement = screen.getByTestId("copper-input");
-    const multiplierInput: HTMLInputElement =
-      screen.getByTestId("multiplier-input");
 
     await user.type(goldInput, "2");
     await user.type(silverInput, "257");
@@ -52,11 +51,6 @@ describe("Calculations", () => {
 
   it("resets all input values after clicking the reset-button", async () => {
     const user = userEvent.setup();
-    const goldInput: HTMLInputElement = screen.getByTestId("gold-input");
-    const silverInput: HTMLInputElement = screen.getByTestId("silver-input");
-    const copperInput: HTMLInputElement = screen.getByTestId("copper-input");
-    const multiplierInput: HTMLInputElement =
-      screen.getByTestId("multiplier-input");
     const resetButton: HTMLButtonElement = screen.getByTestId("wow-btn");
 
     await user.type(goldInput, "25");
