@@ -84,7 +84,7 @@ const GoldCalculator = () => {
               min="0"
               type="number"
               onChange={handleChange}
-              value={inputs.gold}
+              value={inputs.gold || ""}
             />
             <label style={{ color: "#CA4" }} htmlFor="goldInput" key="gold">
               Gold
@@ -100,7 +100,7 @@ const GoldCalculator = () => {
               type="number"
               onChange={handleChange}
               min="0"
-              value={inputs.silver}
+              value={inputs.silver || ""}
               placeholder="Silver"
             />
             <label style={{ color: "#d1d1d1" }} htmlFor="silverInput">
@@ -117,7 +117,7 @@ const GoldCalculator = () => {
               min="0"
               type="number"
               onChange={handleChange}
-              value={inputs.copper}
+              value={inputs.copper || ""}
               placeholder="Copper"
             />
             <label style={{ color: "#bd5c17" }} htmlFor="copperInput">
