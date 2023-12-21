@@ -1,0 +1,19 @@
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+@include color-mode(dark) {
+    body {
+        background-color: #060100;
+    }
+
+    input {
+        background-color: #161211;
+    }
+
+    label::after {
+        background-color: transparent;
+    }
+
+    .form-floating > .form-control:focus ~ label::after, .form-floating > .form-control:not(:placeholder-shown) ~ label::after, .form-floating > .form-control-plaintext ~ label::after, .form-floating > .form-select ~ label::after {
+        background-color: transparent;
+    }
+}
