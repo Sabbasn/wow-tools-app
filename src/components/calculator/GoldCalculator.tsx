@@ -59,9 +59,10 @@ const GoldCalculator = () => {
     }
     return (
       <h1 className="mx-auto p-3" data-testid="valid-text">
-        {gold} <span style={{ color: "#CA" }}>g</span>
-        {silver % 100} <span style={{ color: "#d1d1d1" }}>s</span>
-        {copper % 100} <span style={{ color: "#bd5c17" }}>c</span>
+        {gold}
+        <span style={{ color: "#CA" }}>g</span> {silver % 100}
+        <span style={{ color: "#d1d1d1" }}>s</span> {copper % 100}
+        <span style={{ color: "#bd5c17" }}>c</span>
       </h1>
     );
   };
