@@ -2,6 +2,7 @@ import { useState } from "react";
 import WowButton from "../util/WowButton";
 import "./GoldCalculator.css";
 import { WowInput } from "../util/WowInput";
+import { WowGoldDisplay } from "../util/WowGoldDisplay";
 
 const GoldCalculator = () => {
   const [inputs, setInputs] = useState({
@@ -17,42 +18,6 @@ const GoldCalculator = () => {
 
   const handleChange = (event: any) => {
     setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
-  };
-
-  function isInputValid() {
-    const isValid =
-      inputs.copper >= 0 &&
-      inputs.silver >= 0 &&
-      inputs.gold >= 0 &&
-      inputs.multiplier > 0;
-    return isValid;
-  }
-
-  const goldFormatter = () => {
-    const copper = inputs.copper * inputs.multiplier;
-    const silver =
-      +inputs.silver * inputs.multiplier + +Math.floor(copper / 100);
-    const gold = +inputs.gold * inputs.multiplier + +Math.floor(silver / 100);
-
-    if (!isInputValid()) {
-      return (
-        <h1
-          data-testid="not-valid-text"
-          className="mx-auto p-3 alert"
-          style={{ color: "red" }}
-        >
-          Numbers must be positive
-        </h1>
-      );
-    }
-    return (
-      <h1 className="mx-auto p-3" data-testid="valid-text">
-        {gold}
-        <span style={{ color: "#CA" }}>g</span> {silver % 100}
-        <span style={{ color: "#d1d1d1" }}>s</span> {copper % 100}
-        <span style={{ color: "#bd5c17" }}>c</span>
-      </h1>
-    );
   };
 
   return (
@@ -90,22 +55,22 @@ const GoldCalculator = () => {
           </div>
         </div>
         <div className="card-body border-bottom">
-          <div className="d-flex justify-content-center form-floating">
-            <input
+          <div className="form-floating">
+            <WowInput
               name="multiplier"
-              id="multiplier"
-              key="multiplier"
-              min="0"
-              data-testid="multiplier-input"
-              className="form-control"
               onChange={handleChange}
               value={inputs.multiplier}
             />
-            <label htmlFor="multiplier">Quantity</label>
+            <label htmlFor="multiplier-input">Quantity</label>
           </div>
         </div>
         <WowButton text="Reset" onButtonPress={resetValues} />
-        {goldFormatter()}
+        <WowGoldDisplay
+          copper={inputs.copper}
+          silver={inputs.silver}
+          gold={inputs.gold}
+          multiplier={inputs.multiplier}
+        />
       </div>
     </>
   );

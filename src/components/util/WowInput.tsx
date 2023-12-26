@@ -12,7 +12,7 @@ export function WowInput(props: Props) {
   return (
     <>
       <input
-        className="form-control"
+        className="form-control mb-1"
         value={props.value || ""}
         name={props.name}
         id={`${props.name}-input`}
