@@ -52,7 +52,7 @@ const GoldCalculator = () => {
           </div>
           <div className="list-group-item">
             <WowInput
-              name="Amount"
+              name="multiplier"
               onChange={handleChange}
               value={inputs.multiplier}
               color="grey"
