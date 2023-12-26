@@ -1,6 +1,7 @@
 import { useState } from "react";
 import WowButton from "../util/WowButton";
 import "./GoldCalculator.css";
+import { WowInput } from "../util/WowInput";
 
 const GoldCalculator = () => {
   const [inputs, setInputs] = useState({
@@ -62,52 +63,28 @@ const GoldCalculator = () => {
       >
         <div className="card-body border-bottom" data-testid="form-inputs">
           <div className="form-floating">
-            <input
-              name="gold"
-              id="goldInput"
-              data-testid="gold-input"
-              className="form-control"
-              placeholder="Gold"
-              min="0"
-              type="number"
-              onChange={handleChange}
-              value={inputs.gold || ""}
-            />
-            <label style={{ color: "#CA4" }} htmlFor="goldInput" key="gold">
+            <WowInput name="gold" onChange={handleChange} value={inputs.gold} />
+            <label style={{ color: "#CA4" }} htmlFor="gold-input" key="gold">
               Gold
             </label>
           </div>
           <div className="form-floating">
-            <input
+            <WowInput
               name="silver"
-              id="silverInput"
-              data-testid="silver-input"
-              className="form-control"
-              key="silver"
-              type="number"
               onChange={handleChange}
-              min="0"
-              value={inputs.silver || ""}
-              placeholder="Silver"
+              value={inputs.silver}
             />
-            <label style={{ color: "#d1d1d1" }} htmlFor="silverInput">
+            <label style={{ color: "#d1d1d1" }} htmlFor="silver-input">
               Silver
             </label>
           </div>
           <div className="form-floating">
-            <input
+            <WowInput
               name="copper"
-              id="copperInput"
-              data-testid="copper-input"
-              className="form-control"
-              key="copper"
-              min="0"
-              type="number"
               onChange={handleChange}
-              value={inputs.copper || ""}
-              placeholder="Copper"
+              value={inputs.copper}
             />
-            <label style={{ color: "#bd5c17" }} htmlFor="copperInput">
+            <label style={{ color: "#bd5c17" }} htmlFor="copper-input">
               Copper
             </label>
           </div>
