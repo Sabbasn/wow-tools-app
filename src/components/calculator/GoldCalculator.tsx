@@ -15,20 +15,7 @@ const GoldCalculator = () => {
   };
 
   const handleChange = (event: any) => {
-    switch (event.target.name) {
-      case "gold":
-        setInputs({ ...inputs, gold: event.target.value });
-        break;
-      case "silver":
-        setInputs({ ...inputs, silver: event.target.value });
-        break;
-      case "copper":
-        setInputs({ ...inputs, copper: event.target.value });
-        break;
-      case "multiplier":
-        setInputs({ ...inputs, multiplier: event.target.value });
-        break;
-    }
+    setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
   function isInputValid() {
