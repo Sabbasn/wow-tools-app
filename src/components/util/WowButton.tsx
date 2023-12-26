@@ -10,7 +10,7 @@ function WowButton(props: Props) {
     <button
       data-testid="wow-btn"
       onClick={props.onButtonPress}
-      className="m-3 button"
+      className="button mx-auto"
     >
       {props.text}
     </button>

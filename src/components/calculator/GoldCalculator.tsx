@@ -26,51 +26,48 @@ const GoldCalculator = () => {
         className="d-flex flex-column card align-items-center"
         style={{ minWidth: "400px" }}
       >
-        <div className="card-body border-bottom" data-testid="form-inputs">
-          <div className="form-floating">
-            <WowInput name="gold" onChange={handleChange} value={inputs.gold} />
-            <label style={{ color: "#CA4" }} htmlFor="gold-input" key="gold">
-              Gold
-            </label>
-          </div>
-          <div className="form-floating">
+        <div
+          className="card-body list-group list-group-flush"
+          data-testid="form-inputs"
+        >
+          <div className="list-group-item">
+            <WowInput
+              name="gold"
+              onChange={handleChange}
+              value={inputs.gold}
+              color="#CA4"
+            />
             <WowInput
               name="silver"
               onChange={handleChange}
               value={inputs.silver}
+              color="#d1d1d1"
             />
-            <label style={{ color: "#d1d1d1" }} htmlFor="silver-input">
-              Silver
-            </label>
-          </div>
-          <div className="form-floating">
             <WowInput
               name="copper"
               onChange={handleChange}
               value={inputs.copper}
+              color="#bd5c17"
             />
-            <label style={{ color: "#bd5c17" }} htmlFor="copper-input">
-              Copper
-            </label>
           </div>
-        </div>
-        <div className="card-body border-bottom">
-          <div className="form-floating">
+          <div className="list-group-item">
             <WowInput
-              name="multiplier"
+              name="Amount"
               onChange={handleChange}
               value={inputs.multiplier}
+              color="grey"
             />
-            <label htmlFor="multiplier-input">Quantity</label>
+          </div>
+          <div className="list-group-item d-flex flex-column justify-content-center mx-auto">
+            <WowButton text="Reset" onButtonPress={resetValues} />
+            <WowGoldDisplay
+              copper={inputs.copper}
+              silver={inputs.silver}
+              gold={inputs.gold}
+              multiplier={inputs.multiplier}
+            />
           </div>
         </div>
-        <WowButton text="Reset" onButtonPress={resetValues} />
-        <WowGoldDisplay
-          copper={inputs.copper}
-          silver={inputs.silver}
-          gold={inputs.gold}
-          multiplier={inputs.multiplier}
-        />
       </div>
     </>
   );
